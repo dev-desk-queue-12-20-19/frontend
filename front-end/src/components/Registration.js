@@ -19,44 +19,38 @@ export default class Registration extends Component {
   }
 
   handleChange(event) {
-
     this.setState({
       [event.target.name]: event.target.value
     });
   }
 
   handleSubmit(event) {
-      event.preventDefault()
-    const { email, username, password, role} = this.state;
-    this.setState({fire: true})
+    event.preventDefault();
+    const { email, username, password, role } = this.state;
+    // console.log(this.props);
+
+    this.setState({ fire: true });
     if (this.state.fire) {
+      axios
+        .post("https://devdesk-queue.herokuapp.com/api/auth/register", {
+          email: email,
+          username: username,
+          password: password,
+          role: role
+        })
 
-    axios
-     .post(
-        "https://devdesk-queue.herokuapp.com/api/auth/register",
-        {
-          
-            email: email,
-            username: username,
-            password: password,
-            role: role
-            
-          
-        }
-        
-      )
-    
-      .then(response => {
-        if (response.data.status === "created") {
-          this.props.handleSuccessfulAuth(response.data);
-          this.setState({fire: false})
-        }
-      })
-      .catch(error => {
-        this.setState({fire: false})
-        console.log("registration error", error);
-
-      });
+        .then(response => {
+          // if (response.statusText === "Created") {
+          //   this.props.handleSuccessfulAuth(response.data);
+          //   this.setState({ fire: false });
+          // }
+          alert(response.statusText);
+          console.log(response)
+        })
+        .catch(error => {
+          // this.setState({ fire: false });
+          console.log("registration error", error);
+        });
     }
   }
 
@@ -73,7 +67,7 @@ export default class Registration extends Component {
             required
           />
 
-            <input
+          <input
             type="username"
             name="username"
             placeholder="User name"
@@ -91,9 +85,7 @@ export default class Registration extends Component {
             required
           />
 
-        
-
-            <input
+          <input
             type="role"
             name="role"
             placeholder="Role"
