@@ -1,15 +1,18 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
+
 import Login from "./components/Login";
 import Registration from "./components/Registration";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   return (
     <Router>
       <div>
-        <Login />
-        <Registration />
+        <Route exact path="/" component={Login} />
+        <Route path="/register" component={Registration} />
+        <Route  path="/dashboard" component={Dashboard}/>
       </div>
     </Router>
   );

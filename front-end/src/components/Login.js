@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import axiosWithAuth from "../utils/axiosWithAuth";
 
 const Login = props => {
@@ -15,14 +16,14 @@ const Login = props => {
       .then(result => {
         console.log("post login", result.data.token);
         localStorage.setItem("token", result.data.token);
-        props.history.push("/");
+        props.history.push("/dashboard");
         console.log("login", props);
       })
       .catch(error => console.log("login post error", error));
   };
 
   const handleChange = e => {
-    console.log(e);
+    // console.log(e);
     setCredentials({
       ...credentials,
       [e.target.name]: e.target.value
@@ -54,6 +55,7 @@ const Login = props => {
         <br></br>
 
         <button>login</button>
+        <p>New User? <Link to="/register">Register </Link></p>
       </form>
     </>
   );

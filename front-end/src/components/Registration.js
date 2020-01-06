@@ -27,6 +27,8 @@ export default class Registration extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const { email, username, password, role } = this.state;
+    // console.log(this.props);
+
     this.setState({ fire: true });
     if (this.state.fire) {
       axios
@@ -38,13 +40,15 @@ export default class Registration extends Component {
         })
 
         .then(response => {
-          if (response.data.status === "created") {
-            this.props.handleSuccessfulAuth(response.data);
-            this.setState({ fire: false });
-          }
+          // if (response.statusText === "Created") {
+          //   this.props.handleSuccessfulAuth(response.data);
+          //   this.setState({ fire: false });
+          // }
+          alert(response.statusText);
+          console.log(response)
         })
         .catch(error => {
-          this.setState({ fire: false });
+          // this.setState({ fire: false });
           console.log("registration error", error);
         });
     }
