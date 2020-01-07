@@ -18,11 +18,23 @@ function Dashboard() {
     })
   }, [])
 
+  const deleteTicket = id => {
+    axiosWithAuth()
+    .delete(`/tickets/${id}`)
+    .then(() => {
+      setTicketList(ticketList.filter(ticket => ticket.id !== id))
+    })
+    .catch(error => {
+      console.log('delete error',error)
+    })
+  }
+
   return(
     <div>
       {
         ticketList.map(ticket => {
-          return <TicketCard ticket={ticket} key={ticket.id} />
+          return <TicketCard deleteTicket={deleteTicket}
+          ticket={ticket} key={ticket.id} />
         })
         }
     </div>
