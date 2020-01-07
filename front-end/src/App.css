@@ -1,0 +1,8 @@
+.App {
+  text-align: center;
+}
+
+.TicketCard {
+  border: 2px solid black;
+  margin: 15px;
+}
