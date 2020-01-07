@@ -6,7 +6,7 @@ const axiosWithAuth = () => {
     return axios.create ({
         baseURL: 'https://devdesk-queue.herokuapp.com/api',
         headers: {
-            Role: "helper",
+            role: "helper",
             Authorization: token
             
         }

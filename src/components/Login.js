@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-import axiosWithAuth from "../utils/axiosWithAuth";
+import axios from 'axios';
 
 const Login = props => {
   const [credentials, setCredentials] = useState({
@@ -10,10 +10,11 @@ const Login = props => {
 
   const onSubmit = e => {
     e.preventDefault();
-
-    axiosWithAuth()
-      .post("/auth/login", credentials)
+console.log(credentials)
+    axios
+      .post("https://devdesk-queue.herokuapp.com/api/auth/login", credentials)
       .then(result => {
+        
         console.log("post login", result.data.token);
         localStorage.setItem("token", result.data.token);
         props.history.push("/dashboard");
@@ -23,7 +24,6 @@ const Login = props => {
   };
 
   const handleChange = e => {
-    // console.log(e);
     setCredentials({
       ...credentials,
       [e.target.name]: e.target.value
