@@ -32,7 +32,7 @@ export default class Registration extends Component {
     this.setState({ fire: true });
     if (this.state.fire) {
       axios
-        .post("https://devdesk-queue.herokuapp.com/api/auth/register", {
+        .post("https://devdesk-queue-2020.herokuapp.com/api/auth/register", {
           email: email,
           username: username,
           password: password,

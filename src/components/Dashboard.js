@@ -1,44 +1,73 @@
 import React, { useState, useEffect } from "react";
 
-import axiosWithAuth from '../utils/axiosWithAuth';
-import TicketCard from './TicketCard';
+import axiosWithAuth from "../utils/axiosWithAuth";
+import TicketCard from "./TicketCard";
 
 function Dashboard() {
   const [ticketList, setTicketList] = useState([]);
 
   useEffect(() => {
     axiosWithAuth()
-    .get("/tickets")
-    .then(response => {
-      console.log(response);
-      setTicketList(response.data);
-    })
-    .catch(error => {
-      console.log(error); 
-    })
-  }, [])
+      .get("/tickets")
+      .then(response => {
+        console.log(response);
+        setTicketList(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
 
   const deleteTicket = id => {
     axiosWithAuth()
-    .delete(`/tickets/${id}`)
-    .then(() => {
-      setTicketList(ticketList.filter(ticket => ticket.id !== id))
-    })
-    .catch(error => {
-      console.log('delete error',error)
-    })
-  }
+      .delete(`/tickets/${id}`)
+      .then(() => {
+        setTicketList(ticketList.filter(ticket => ticket.id !== id));
+      })
+      .catch(error => {
+        console.log("delete error", error);
+      });
+  };
 
-  return(
+  const markComplete = id => {
+    axiosWithAuth()
+      .put(`/tickets/${id}`, { status: "complete" })
+      .then(response => {
+        console.log(response);
+      
+        setTicketList(ticketList.filter(ticket => ticket.id !== id));
+      })
+      .catch(error => {
+        console.log("update error", error);
+      });
+  };
+
+  // const assignToMe = id => {
+  //   axiosWithAuth()
+  //     .put(`/tickets/${id}`, { helper_id: `${id}` })
+  //     .then(response => {
+  //       console.log(response);
+
+  //     })
+  //     .catch(error => {
+  //       console.log("assignment error", error);
+  //     });
+  // };
+
+  return (
     <div>
-      {
-        ticketList.map(ticket => {
-          return <TicketCard deleteTicket={deleteTicket}
-          ticket={ticket} key={ticket.id} />
-        })
-        }
+      {ticketList.map(ticket => {
+        return (
+          <TicketCard
+            deleteTicket={deleteTicket}
+            markComplete={markComplete}
+            ticket={ticket}
+            key={ticket.id}
+          />
+        );
+      })}
     </div>
-  )
+  );
 }
 
 export default Dashboard;
