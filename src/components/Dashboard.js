@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import axiosWithAuth from "../utils/axiosWithAuth";
+import StudentCard from './StudentCard';
 import TicketCard from "./TicketCard";
 
 function Dashboard() {
@@ -43,6 +44,8 @@ function Dashboard() {
       });
   };
 
+  
+
   // const assignToMe = id => {
   //   axiosWithAuth()
   //     .put(`/tickets/${id}`, { helper_id: `${id}` })
@@ -59,12 +62,12 @@ function Dashboard() {
     <div>
       {ticketList.map(ticket => {
         return (
-          <TicketCard
-            deleteTicket={deleteTicket}
-            markComplete={markComplete}
-            ticket={ticket}
-            key={ticket.id}
-          />
+          <>
+
+          <TicketCard deleteTicket={deleteTicket} markComplete={markComplete}  ticket={ticket} key={ticket.id}/>
+          <StudentCard  ticket={ticket} key={ticket.id} />
+
+          </>
         );
       })}
     </div>

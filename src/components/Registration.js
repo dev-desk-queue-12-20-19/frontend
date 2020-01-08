@@ -1,68 +1,77 @@
-import React, { Component } from "react";
+import React, {useState} from "react";
 import axios from "axios";
 
-export default class Registration extends Component {
-  constructor(props) {
-    super(props);
+export const Registration = () =>  {
 
-    this.state = {
-      email: "",
-      username: "",
-      password: "",
-      role: "",
-      fire: false
-    };
+  const [form, setForm] = useState(
+    
+    {
+        email: "",
+        username: "",
+        password: "",
+        role: "",
+        
+  })
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
+  const [fire, setFire] = useState(
+    false
+  )
 
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value
+    
+
+    
+  
+
+ function handleChange(event) {
+    setForm({
+      ...form, [event.target.name]: event.target.value
     });
+    console.log(form)
   }
+  // function handleChange1(event) {
+  //   setForm({
+  //     //...form, username: event.target.value
+  //   });
+  //   console.log(form)
+  // }
 
-  handleSubmit(event) {
+ function handleSubmit(event) {
     event.preventDefault();
-    const { email, username, password, role } = this.state;
-    // console.log(this.props);
-
-    this.setState({ fire: true });
-    if (this.state.fire) {
+    setFire(
+       true
+    )
+    console.log(form)
+  }
+    if (fire) {
+      console.log(form)
       axios
-        .post("https://devdesk-queue-2020.herokuapp.com/api/auth/register", {
-          email: email,
-          username: username,
-          password: password,
-          role: role
-        })
+        .post("https://devdesk-queue-2020.herokuapp.com/api/auth/register", form)
 
         .then(response => {
-          // if (response.statusText === "Created") {
-          //   this.props.handleSuccessfulAuth(response.data);
-          //   this.setState({ fire: false });
-          // }
+           if (response.statusText === "Created") {
+          setFire(false);
+          
           alert(response.statusText);
           console.log(response)
+           }
         })
         .catch(error => {
           // this.setState({ fire: false });
           console.log("registration error", error);
         });
     }
-  }
 
-  render() {
+
+  
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <input
             type="email"
             name="email"
             placeholder="Email"
-            value={this.state.email}
-            onChange={this.handleChange}
+            value={form.email}
+            onChange={handleChange}
             required
           />
 
@@ -70,8 +79,8 @@ export default class Registration extends Component {
             type="username"
             name="username"
             placeholder="User name"
-            value={this.state.username}
-            onChange={this.handleChange}
+            value={form.username}
+            onChange={handleChange}
             required
           />
 
@@ -79,8 +88,8 @@ export default class Registration extends Component {
             type="password"
             name="password"
             placeholder="Password"
-            value={this.state.password}
-            onChange={this.handleChange}
+            value={form.password}
+            onChange={handleChange}
             required
           />
 
@@ -88,8 +97,8 @@ export default class Registration extends Component {
             type="role"
             name="role"
             placeholder="Role"
-            value={this.state.role}
-            onChange={this.handleChange}
+            value={form.role}
+            onChange={handleChange}
             required
           />
 
@@ -97,5 +106,5 @@ export default class Registration extends Component {
         </form>
       </div>
     );
-  }
 }
+
