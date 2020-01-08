@@ -6,6 +6,7 @@ import TicketCard from "./TicketCard";
 function Dashboard() {
   const [ticketList, setTicketList] = useState([]);
 
+
   useEffect(() => {
     axiosWithAuth()
       .get("/tickets")
@@ -19,7 +20,7 @@ function Dashboard() {
   }, []);
 
   const deleteTicket = id => {
-    axiosWithAuth()
+    axiosWithAuth('helper')
       .delete(`/tickets/${id}`)
       .then(() => {
         setTicketList(ticketList.filter(ticket => ticket.id !== id));
@@ -30,7 +31,7 @@ function Dashboard() {
   };
 
   const markComplete = id => {
-    axiosWithAuth()
+    axiosWithAuth('helper')
       .put(`/tickets/${id}`, { status: "complete" })
       .then(response => {
         console.log(response);
