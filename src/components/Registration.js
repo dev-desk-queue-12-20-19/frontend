@@ -26,7 +26,7 @@ export const Registration = () =>  {
     setForm({
       ...form, [event.target.name]: event.target.value
     });
-    console.log(form)
+    // console.log(form)
   }
   // function handleChange1(event) {
   //   setForm({
