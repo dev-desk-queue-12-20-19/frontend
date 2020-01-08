@@ -7,16 +7,28 @@ function NewTicket() {
     category: ""
   });
 
+  const handleFormInput = event => {
+    setFormValues({
+      ...formValues,
+      [event.target.name]: event.target.value
+    });
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    console.log(formValues);
+  }
   return (
     <div>
       <h3>Add your request below:</h3>
-      <form onSubmit={null}>
+
+      <form onSubmit={handleSubmit}>
         <div>
           Title
           <input
             type="text"
             placeholder="Request title"
-            onChange={null}
+            onChange={handleFormInput}
             name="title"
             required
           />
@@ -27,7 +39,7 @@ function NewTicket() {
           <input
             type="text"
             placeholder="Describe your request"
-            onChange={null}
+            onChange={handleFormInput}
             name="description"
             required
           />
@@ -35,7 +47,7 @@ function NewTicket() {
 
         <div>
           Categories
-          <select name="category">
+          <select name="category" onChange={handleFormInput}>
             <option value="">--Select a category--</option>
             <option value="javascript">Javascript</option>
             <option value="java">Java</option>
