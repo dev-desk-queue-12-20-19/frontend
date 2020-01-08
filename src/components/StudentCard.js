@@ -1,7 +1,9 @@
 import React from 'react';
+import { withRouter } from "react-router-dom";
 
 
-export default function StudentCard(props) {
+function StudentCard(props) {
+
 console.log(props)
   return (
     <div className="TicketCard">
@@ -9,12 +11,15 @@ console.log(props)
       <h2>Title: {props.ticket.title}</h2>
       <h2>Description: {props.ticket.description}</h2>
       <p>Status: {props.ticket.status} </p>
-      {/* <button>create Ticket</button> */}
+      <button type="submit" onClick={()=> props.history.push('/new-ticket')}>Create New Request</button>
+
     </div>
   );
 }
 
+const StudentCardRouter = withRouter (StudentCard)
 
+export default StudentCardRouter
 
 
 

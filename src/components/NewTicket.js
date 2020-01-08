@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 
 function NewTicket(props) {
@@ -17,13 +18,23 @@ function NewTicket(props) {
 
   const handleSubmit = event => {
     event.preventDefault();
-   
     const valuesToPost = {
       ...formValues,
       status: "pending",
       student_id: props.userObject.user_id
     }
-
+    axiosWithAuth('student')
+    .post(
+      "/tickets", valuesToPost
+      
+    )
+    .then(result => {
+      console.log('post Message', result)
+    })
+    .catch(error => {
+      console.log('post message error', error)
+    })
+    
     console.log(valuesToPost.student_id);
   }
 
