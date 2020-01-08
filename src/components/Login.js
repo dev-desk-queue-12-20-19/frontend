@@ -19,10 +19,12 @@ const Login = props => {
         credentials
       )
       .then(result => {
-        console.log("post login", result.data.token);
+        console.log("post login", result);
+        console.log("login props", props);
+
         localStorage.setItem("token", result.data.token);
+        props.setUserObject(result.data)
         props.history.push("/dashboard");
-        console.log("login", props);
 
       })
       .catch(error => console.log("login post error", error));
