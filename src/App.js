@@ -5,7 +5,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import "./App.css";
 
 import Login from "./components/Login";
-import Registration from "./components/Registration";
+import {Registration} from "./components/Registration";
 import Dashboard from "./components/Dashboard";
 
 function App() {
