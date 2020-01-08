@@ -11,7 +11,6 @@ export default function TicketCard(props) {
       <p>Status: {props.ticket.status} </p>
       <button onClick={() => props.deleteTicket(props.ticket.id)}>Delete </button>
       <button onClick={() => props.markComplete(props.ticket.id)}>Mark Complete</button>
-      <button onClick={() => props.createTicket(props.ticket.id)}>create Ticket</button>
 
       <button>Assign to me</button>
     </div>

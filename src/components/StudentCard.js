@@ -9,9 +9,7 @@ console.log(props)
       <h2>Title: {props.ticket.title}</h2>
       <h2>Description: {props.ticket.description}</h2>
       <p>Status: {props.ticket.status} </p>
-      <button onClick={() => props.createTicket(props.ticket.id)}>create Ticket</button>
-
-      <button>Assign to me</button>
+      <button>create Ticket</button>
     </div>
   );
 }

@@ -44,16 +44,7 @@ function Dashboard() {
       });
   };
 
-  const createTicket = id => {
-    axiosWithAuth('student')
-    .post(`/tickets/${id}`)
-    .then(responce => {
-      console.log(responce);
-    })
-    .catch(error => {
-      console.log(error);
-    });
-  };
+  
 
   // const assignToMe = id => {
   //   axiosWithAuth()
@@ -71,10 +62,12 @@ function Dashboard() {
     <div>
       {ticketList.map(ticket => {
         return (
-          <div>
+          <>
+
           <TicketCard deleteTicket={deleteTicket} markComplete={markComplete}  ticket={ticket} key={ticket.id}/>
-          <StudentCard createTicket={createTicket} ticket={ticket} key={ticket.id} />
-          </div>
+          <StudentCard  ticket={ticket} key={ticket.id} />
+
+          </>
         );
       })}
     </div>
