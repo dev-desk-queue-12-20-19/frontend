@@ -10,7 +10,6 @@ export default class Registration extends Component {
       username: "",
       password: "",
       role: "",
-      registrationErrors: "",
       fire: false
     };
 

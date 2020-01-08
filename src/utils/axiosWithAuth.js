@@ -1,12 +1,13 @@
 import axios from 'axios';
 
-const axiosWithAuth = () => {
+const axiosWithAuth = (role) => {
+    
     const token = localStorage.getItem('token');
 
     return axios.create ({
         baseURL: 'https://devdesk-queue-2020.herokuapp.com/api',
         headers: {
-            Role: "helper",
+            role: role,
             Authorization: token
             
         }
