@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 
 import axiosWithAuth from "../utils/axiosWithAuth";
 import StudentCard from './StudentCard';
 import TicketCard from "./TicketCard";
 
-function Dashboard() {
+function Dashboard(props) {
   const [ticketList, setTicketList] = useState([]);
 
 
@@ -58,20 +59,24 @@ function Dashboard() {
   //     });
   // };
 
+  // console.log("User object from ...", props.userObject);
   return (
     <div>
-      {ticketList.map(ticket => {
-        return (
-          <>
-
-          <TicketCard deleteTicket={deleteTicket} markComplete={markComplete}  ticket={ticket} key={ticket.id}/>
-          <StudentCard  ticket={ticket} key={ticket.id} />
-
-          </>
-        );
-      })}
+      {
+        props.userObject.user_type === "helper" ? ticketList.map(ticket => {
+           return <TicketCard
+              deleteTicket={deleteTicket}
+              markComplete={markComplete}
+              ticket={ticket}
+              key={ticket.id}
+            />
+        }) : ticketList.filter(ticket => props.userObject.user_id === ticket.student_id).map(ticket => {
+          return <StudentCard ticket={ticket} key={ticket.id} />
+        })
+      }
     </div>
-  );
+  )
+
 }
 
 export default Dashboard;
