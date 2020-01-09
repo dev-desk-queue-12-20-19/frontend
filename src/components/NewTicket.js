@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { withRouter } from 'react-router-dom';
+
 import axiosWithAuth from '../utils/axiosWithAuth';
 import tokenDecode from "../utils/tokenDecode";
 
@@ -28,13 +30,13 @@ function NewTicket(props) {
     console.log("ticket values to post", valuesToPost);
     console.log("ticket values to post", tokenObj);
 
-
     axiosWithAuth('student')
     .post(
       "/tickets", valuesToPost     
     )
     .then(result => {
-      console.log('post Message', result)
+      console.log('post Message', result);
+      props.history.push("/dashboard");
     })
     .catch(error => {
       console.log('post message error', error)
@@ -88,4 +90,6 @@ function NewTicket(props) {
   );
 }
 
-export default NewTicket;
+const NewTicketWithRouter = withRouter(NewTicket);
+
+export default NewTicketWithRouter;
