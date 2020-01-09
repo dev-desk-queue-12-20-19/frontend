@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
 
-import { Card, Icon, Image } from 'semantic-ui-react';
-import { withRouter } from 'react-router-dom';
-import tokenDecode from '../utils/tokenDecode';
-import axiosWithAuth from '../utils/axiosWithAuth';
+import { Card, Icon, Image } from "semantic-ui-react";
+
+import axiosWithAuth from "../utils/axiosWithAuth";
+import tokenDecode from "../utils/tokenDecode";
 
 
 function NewTicket(props) {
@@ -29,23 +30,20 @@ function NewTicket(props) {
       status: "pending",
 
       student_id: tokenObj.subject.toString()
-    }
+    };
     console.log("ticket values to post", valuesToPost);
     console.log("ticket values to post", tokenObj);
 
-    axiosWithAuth('student')
-    .post(
-      "/tickets", valuesToPost     
-    )
-    .then(result => {
-      console.log('post Message', result);
-      props.history.push("/dashboard");
-    })
-    .catch(error => {
-      console.log('post message error', error)
-    })
-    
-  }
+    axiosWithAuth("student")
+      .post("/tickets", valuesToPost)
+      .then(result => {
+        console.log("post Message", result);
+        props.history.push("/dashboard");
+      })
+      .catch(error => {
+        console.log("post message error", error);
+      });
+  };
 
   return (
     <Card>
@@ -77,7 +75,11 @@ function NewTicket(props) {
 
         <div>
           Categories
-          <select name="categories" onChange={handleFormInput} value={formValues.categories} >
+          <select
+            name="categories"
+            onChange={handleFormInput}
+            value={formValues.categories}
+          >
             <option value="">--Select a category--</option>
             <option value="javascript">Javascript</option>
             <option value="java">Java</option>
@@ -89,7 +91,7 @@ function NewTicket(props) {
 
 <button type="submit">Create New Request</button>
       </form>
-  </Card>
+    </Card>
   );
 }
 
