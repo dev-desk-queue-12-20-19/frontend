@@ -25,7 +25,7 @@ const Login = props => {
         console.log("login props", props);
 
         localStorage.setItem("token", result.data.token);
-        props.setUserObject(result.data)
+        sessionStorage.setItem("userDetails", JSON.stringify(result.data));
         props.history.push("/dashboard");
 
       })

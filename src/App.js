@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Route } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 import Login from "./components/Login";
-import {Registration} from "./components/Registration";
+import Registration from "./components/Registration";
 import Dashboard from "./components/Dashboard";
 import NewTicket from "./components/NewTicket";
 

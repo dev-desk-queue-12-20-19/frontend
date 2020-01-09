@@ -1,18 +1,17 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { Form, Button, Grid, Segment } from 'semantic-ui-react';
 
-export const Registration = () =>  {
+const Registration = () => {
+  const [form, setForm] = useState({
+    email: "",
+    username: "",
+    password: "",
+    role: ""
+  });
 
-  const [form, setForm] = useState(
-    
-    {
-        email: "",
-        username: "",
-        password: "",
-        role: "",
-        
-  })
+  const [fire, setFire] = useState(false);
+
 
   const [fire, setFire] = useState(
     false
@@ -27,8 +26,10 @@ export const Registration = () =>  {
   
 
  function handleChange(event) {
+
     setForm({
-      ...form, [event.target.name]: event.target.value
+      ...form,
+      [event.target.name]: event.target.value
     });
     // console.log(form)
   }
@@ -39,31 +40,30 @@ export const Registration = () =>  {
   //   console.log(form)
   // }
 
- function handleSubmit(event) {
+  function handleSubmit(event) {
     event.preventDefault();
-    setFire(
-       true
-    )
-    console.log(form)
+    setFire(true);
+    console.log(form);
   }
-    if (fire) {
-      
-      axios
-        .post("https://devdesk-queue-2020.herokuapp.com/api/auth/register", form)
 
-        .then(response => {
-           if (response.statusText === "Created") {
+  if (fire) {
+    console.log(form);
+    axios
+      .post("https://devdesk-queue-2020.herokuapp.com/api/auth/register", form)
+
+      .then(response => {
+        if (response.statusText === "Created") {
           setFire(false);
-          
+
           alert(response.statusText);
-          console.log(response)
-           }
-        })
-        .catch(error => {
-          // this.setState({ fire: false });
-          console.log("registration error", error);
-        });
-    }
+          console.log(response);
+        }
+      })
+      .catch(error => {
+        // this.setState({ fire: false });
+        console.log("registration error", error);
+      });
+  }
 
 
   
@@ -123,3 +123,5 @@ export const Registration = () =>  {
     );
 }
 
+
+export default Registration;

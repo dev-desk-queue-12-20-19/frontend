@@ -2,7 +2,6 @@ import React from 'react';
 import { withRouter } from "react-router-dom";
 import { Card, Button } from 'semantic-ui-react';
 
-
 function StudentCard(props) {
 
 console.log(props)
@@ -19,9 +18,9 @@ console.log(props)
   );
 }
 
-const StudentCardRouter = withRouter (StudentCard)
+const StudentCardRouter = withRouter(StudentCard);
 
-export default StudentCardRouter
+export default StudentCardRouter;
 
 
 
