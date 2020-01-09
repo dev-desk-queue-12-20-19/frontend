@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Form, Button, Grid, Segment } from 'semantic-ui-react';
+import { Form, Button, Grid, Segment } from "semantic-ui-react";
 
 const Registration = () => {
   const [form, setForm] = useState({
@@ -12,21 +12,12 @@ const Registration = () => {
 
   const [fire, setFire] = useState(false);
 
-
-  const [fire, setFire] = useState(
-    false
-  )
   const options = [
-    {key: 's', text: 'Student', value: 'student'},
-    {key: 'h', text: 'helper', value: 'helper'},
-  ]
-    
+    { key: "s", text: "Student", value: "student" },
+    { key: "h", text: "helper", value: "helper" }
+  ];
 
-    
-  
-
- function handleChange(event) {
-
+  function handleChange(event) {
     setForm({
       ...form,
       [event.target.name]: event.target.value
@@ -65,63 +56,56 @@ const Registration = () => {
       });
   }
 
-
-  
-    return (
-      <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-    <Grid.Column style={{ maxWidth: 450 }}>
-      <Form size='large'  onSubmit={handleSubmit}>
-        
+  return (
+    <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
+      <Grid.Column style={{ maxWidth: 450 }}>
+        <Form size="large" onSubmit={handleSubmit}>
           <Segment stacked>
-          <Form.Input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={form.email}
-            onChange={handleChange}
-            required
-          />
+            <Form.Input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={form.email}
+              onChange={handleChange}
+              required
+            />
 
-          <Form.Input
-            type="username"
-            name="username"
-            placeholder="User name"
-            value={form.username}
-            onChange={handleChange}
-            required
-          />
+            <Form.Input
+              type="username"
+              name="username"
+              placeholder="User name"
+              value={form.username}
+              onChange={handleChange}
+              required
+            />
 
-          <Form.Input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={form.password}
-            onChange={handleChange}
-            required
-          />
+            <Form.Input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={form.password}
+              onChange={handleChange}
+              required
+            />
 
-          <Form.Select
-            type="role"
-            name="role"
-            options={options}
-            placeholder="Role"
-            value={form.role.options}
-            onChange={handleChange}
-            required
-          />
+            <Form.Select
+              type="role"
+              name="role"
+              options={options}
+              placeholder="Role"
+              value={form.role.options}
+              onChange={handleChange}
+              required
+            />
 
-<Button color='teal' fluid size='large' >Register</Button>
+            <Button color="teal" fluid size="large">
+              Register
+            </Button>
           </Segment>
-          
-        
-        
-       
-
-      </Form>
+        </Form>
       </Grid.Column>
-      </Grid>
-    );
-}
-
+    </Grid>
+  );
+};
 
 export default Registration;
