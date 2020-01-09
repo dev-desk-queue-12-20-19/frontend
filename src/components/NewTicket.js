@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Grid, Button, Segment } from 'semantic-ui-react';
+import { Card, Grid, Button, Segment, Form, TextArea } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 import tokenDecode from '../utils/tokenDecode';
 import axiosWithAuth from '../utils/axiosWithAuth';
@@ -11,6 +11,22 @@ function NewTicket(props) {
     description: "",
     categories: ""
   });
+
+  const options = [
+    {key: 'j', text: 'Javascipt', value:'javascript'},
+    {key: 'v', text: 'Java', value:'java'},
+    {key: 'r', text: 'Ruby', value:'ruby'},
+    {key: 'b', text: 'Backend', value:'backend'},
+    {key: 'u', text: 'UX 1', value:'ux 1'},
+  ]
+
+  const handleSelectChange = (e, data) => {
+    // console.log(data);
+    setFormValues({
+      ...formValues,
+      [data.name]: data.value
+    })
+  }
 
   const handleFormInput = event => {
     setFormValues({
@@ -47,13 +63,16 @@ function NewTicket(props) {
   }
 
   return (
-    <Card>
+    <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+    <Grid.Column style={{ maxWidth: 450 }}>
+  
       <h3>Add your request below:</h3>
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          Title
-          <input
+      <Form sizw='large'  onSubmit={handleSubmit}>
+      <Segment stacked>
+
+          <h1>Title</h1>
+          <Form.Input
             type="text"
             placeholder="Request title"
             value={formValues.title}
@@ -61,34 +80,39 @@ function NewTicket(props) {
             name="title"
             required
           />
-        </div>
+        
 
-        <label>
-          Description
-          <textarea
+        
+          <h2>Description</h2>
+          <TextArea
             name="description"
             value={formValues.description}
             onChange={handleFormInput}
             placeholder="Describe your request in detail. Help us help you."
             required
           />
-        </label>
+      
 
-        <div>
-          Categories
-          <select name="categories" onChange={handleFormInput} value={formValues.categories} >
-            <option value="">--Select a category--</option>
-            <option value="javascript">Javascript</option>
-            <option value="java">Java</option>
-            <option value="ruby">ruby</option>
-            <option value="backend">Backend</option>
-            <option value="UX 1">UX 1</option>
-          </select>
-        </div>
+        
+         <h2> Categories</h2>
+          <Form.Select
+            type="Categories"
+            name="Categories"
+            options={options}
+            placeholder="Role"
+            value={formValues.options}
+            onChange={handleSelectChange}
+            required
+          />
+        
 
-<button type="submit">Create New Request</button>
-      </form>
-  </Card>
+<Button type="submit">Create New Request</Button>
+
+      </Segment>
+      </Form>
+      </Grid.Column>
+      </Grid>
+  
   );
 }
 
