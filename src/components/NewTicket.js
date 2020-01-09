@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axiosWithAuth from '../utils/axiosWithAuth';
-
+import tokenDecode from "../utils/tokenDecode";
 
 function NewTicket(props) {
   const [formValues, setFormValues] = useState({
@@ -18,15 +18,20 @@ function NewTicket(props) {
 
   const handleSubmit = event => {
     event.preventDefault();
+    const tokenObj = tokenDecode();
+
     const valuesToPost = {
       ...formValues,
       status: "pending",
-      student_id: props.userObject.user_id.toString()
+      student_id: tokenObj.subject.toString()
     }
+    console.log("ticket values to post", valuesToPost);
+    console.log("ticket values to post", tokenObj);
+
+
     axiosWithAuth('student')
     .post(
-      "/tickets", valuesToPost
-      
+      "/tickets", valuesToPost     
     )
     .then(result => {
       console.log('post Message', result)
@@ -35,7 +40,6 @@ function NewTicket(props) {
       console.log('post message error', error)
     })
     
-    console.log(valuesToPost.student_id);
   }
 
   return (
