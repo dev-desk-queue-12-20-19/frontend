@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import axios from "axios";
+import { Form, Button, Grid, Segment } from 'semantic-ui-react';
 
 export const Registration = () =>  {
 
@@ -16,7 +17,10 @@ export const Registration = () =>  {
   const [fire, setFire] = useState(
     false
   )
-
+  const options = [
+    {key: 's', text: 'Student', value: 'student'},
+    {key: 'h', text: 'helper', value: 'helper'},
+  ]
     
 
     
@@ -64,9 +68,12 @@ export const Registration = () =>  {
 
   
     return (
-      <div>
-        <form onSubmit={handleSubmit}>
-          <input
+      <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+    <Grid.Column style={{ maxWidth: 450 }}>
+      <Form size='large'  onSubmit={handleSubmit}>
+        
+          <Segment stacked>
+          <Form.Input
             type="email"
             name="email"
             placeholder="Email"
@@ -75,7 +82,7 @@ export const Registration = () =>  {
             required
           />
 
-          <input
+          <Form.Input
             type="username"
             name="username"
             placeholder="User name"
@@ -84,7 +91,7 @@ export const Registration = () =>  {
             required
           />
 
-          <input
+          <Form.Input
             type="password"
             name="password"
             placeholder="Password"
@@ -93,18 +100,26 @@ export const Registration = () =>  {
             required
           />
 
-          <input
+          <Form.Select
             type="role"
             name="role"
+            options={options}
             placeholder="Role"
-            value={form.role}
+            value={form.role.options}
             onChange={handleChange}
             required
           />
 
-          <button type="submit">Register</button>
-        </form>
-      </div>
+<Button color='teal' fluid size='large' >Register</Button>
+          </Segment>
+          
+        
+        
+       
+
+      </Form>
+      </Grid.Column>
+      </Grid>
     );
 }
 

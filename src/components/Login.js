@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
+import { Form, Button, Grid, Segment } from 'semantic-ui-react';
+
 import axios from 'axios'
 
 const Login = props => {
@@ -39,7 +41,8 @@ const Login = props => {
   };
 
   return (
-    <>
+    <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+    <Grid.Column style={{ maxWidth: 450 }}>
       <h1>Dev Desk</h1>
       <form onSubmit={onSubmit}>
         <input
@@ -65,7 +68,8 @@ const Login = props => {
         <button>login</button>
         <p>New User? <Link to="/register">Register </Link></p>
       </form>
-    </>
+      </Grid.Column>
+  </Grid>
   );
 };
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axiosWithAuth from '../utils/axiosWithAuth';
+import { Card, Icon, Image } from 'semantic-ui-react';
 
 
 function NewTicket(props) {
@@ -40,7 +41,7 @@ function NewTicket(props) {
   }
 
   return (
-    <div>
+    <Card>
       <h3>Add your request below:</h3>
 
       <form onSubmit={handleSubmit}>
@@ -81,7 +82,7 @@ function NewTicket(props) {
 
         <button type="submit">Create New Request</button>
       </form>
-    </div>
+  </Card>
   );
 }
 
