@@ -71,7 +71,7 @@ function Dashboard(props) {
               key={ticket.id}
             />
         }) : ticketList.filter(ticket => props.userObject.user_id === ticket.student_id).map(ticket => {
-          return (
+       return (
             <div>
               <StudentCard ticket={ticket} key={ticket.id} />
               <Link to="/new-ticket">Add new ticket</Link>

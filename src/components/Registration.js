@@ -43,7 +43,7 @@ export const Registration = () =>  {
     console.log(form)
   }
     if (fire) {
-      console.log(form)
+      
       axios
         .post("https://devdesk-queue-2020.herokuapp.com/api/auth/register", form)
 

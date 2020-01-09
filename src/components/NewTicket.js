@@ -6,7 +6,7 @@ function NewTicket(props) {
   const [formValues, setFormValues] = useState({
     title: "",
     description: "",
-    category: ""
+    categories: ""
   });
 
   const handleFormInput = event => {
@@ -21,7 +21,8 @@ function NewTicket(props) {
     const valuesToPost = {
       ...formValues,
       status: "pending",
-      student_id: props.userObject.user_id
+      student_id: props.userObject.user_id,
+  
     }
     axiosWithAuth('student')
     .post(
@@ -68,7 +69,7 @@ function NewTicket(props) {
 
         <div>
           Categories
-          <select name="category" onChange={handleFormInput} value={formValues.category} >
+          <select name="categories" onChange={handleFormInput} value={formValues.categories} >
             <option value="">--Select a category--</option>
             <option value="javascript">Javascript</option>
             <option value="java">Java</option>
