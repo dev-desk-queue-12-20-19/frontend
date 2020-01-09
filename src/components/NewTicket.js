@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import axiosWithAuth from '../utils/axiosWithAuth';
+import { withRouter } from 'react-router-dom';
 
+import axiosWithAuth from '../utils/axiosWithAuth';
+import tokenDecode from "../utils/tokenDecode";
 
 function NewTicket(props) {
   const [formValues, setFormValues] = useState({
     title: "",
     description: "",
-    category: ""
+    categories: ""
   });
 
   const handleFormInput = event => {
@@ -18,24 +20,28 @@ function NewTicket(props) {
 
   const handleSubmit = event => {
     event.preventDefault();
+    const tokenObj = tokenDecode();
+
     const valuesToPost = {
       ...formValues,
       status: "pending",
-      student_id: props.userObject.user_id
+      student_id: tokenObj.subject.toString()
     }
+    console.log("ticket values to post", valuesToPost);
+    console.log("ticket values to post", tokenObj);
+
     axiosWithAuth('student')
     .post(
-      "/tickets", valuesToPost
-      
+      "/tickets", valuesToPost     
     )
     .then(result => {
-      console.log('post Message', result)
+      console.log('post Message', result);
+      props.history.push("/dashboard");
     })
     .catch(error => {
       console.log('post message error', error)
     })
     
-    console.log(valuesToPost.student_id);
   }
 
   return (
@@ -68,7 +74,7 @@ function NewTicket(props) {
 
         <div>
           Categories
-          <select name="category" onChange={handleFormInput} value={formValues.category} >
+          <select name="categories" onChange={handleFormInput} value={formValues.categories} >
             <option value="">--Select a category--</option>
             <option value="javascript">Javascript</option>
             <option value="java">Java</option>
@@ -84,4 +90,6 @@ function NewTicket(props) {
   );
 }
 
-export default NewTicket;
+const NewTicketWithRouter = withRouter(NewTicket);
+
+export default NewTicketWithRouter;
