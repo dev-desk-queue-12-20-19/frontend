@@ -8,7 +8,7 @@ function StudentCard(props) {
 
 console.log(props)
   return (
-    <Grid textAlign='center' style={{ height: '' }} verticalAlign='middle'>
+    <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
     <Grid.Column style={{ maxWidth: 450 }}>
     <Card.Group>
     <Card>

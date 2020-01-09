@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-
-import { Card, Icon, Image } from 'semantic-ui-react';
+import { Card, Grid, Button, Segment } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 import tokenDecode from '../utils/tokenDecode';
 import axiosWithAuth from '../utils/axiosWithAuth';
