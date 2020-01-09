@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Form, Button, Grid, Segment } from "semantic-ui-react";
 
-const Registration = () => {
+const Registration = props => {
   const [form, setForm] = useState({
     email: "",
     username: "",
@@ -50,6 +50,7 @@ const Registration = () => {
           setFire(false);
 
           alert(response.statusText);
+          props.history.push("/");
           console.log(response);
         }
       })
