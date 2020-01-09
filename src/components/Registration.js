@@ -13,9 +13,6 @@ const Registration = () => {
   const [fire, setFire] = useState(false);
 
 
-  const [fire, setFire] = useState(
-    false
-  )
   const options = [
     {key: 's', text: 'Student', value: 'student'},
     {key: 'h', text: 'helper', value: 'helper'},
