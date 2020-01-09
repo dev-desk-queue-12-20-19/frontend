@@ -22,14 +22,17 @@ const Registration = () => {
       ...form,
       [event.target.name]: event.target.value
     });
-    // console.log(form)
+
+    // console.log(event.target.value);
   }
-  // function handleChange1(event) {
-  //   setForm({
-  //     //...form, username: event.target.value
-  //   });
-  //   console.log(form)
-  // }
+
+  const handleSelectChange = (e, data) => {
+    // console.log(data);
+    setForm({
+      ...form,
+      [data.name]: data.value
+    })
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -94,7 +97,7 @@ const Registration = () => {
               options={options}
               placeholder="Role"
               value={form.role.options}
-              onChange={handleChange}
+              onChange={handleSelectChange}
               required
             />
 
