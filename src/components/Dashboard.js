@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import axiosWithAuth from "../utils/axiosWithAuth";
 import StudentCard from './StudentCard';
 import TicketCard from "./TicketCard";
-import { Card, Icon, Image } from 'semantic-ui-react';
+import { Card, Grid, Button, Segment } from 'semantic-ui-react';
 
 
 
@@ -79,7 +79,7 @@ function Dashboard(props) {
             <div key={ticket.id}>
 
               <StudentCard ticket={ticket} key={ticket.id} />
-              <Link to="/new-ticket">Add new ticket</Link>
+
             </div>
           )
         })

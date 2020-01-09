@@ -65,46 +65,46 @@ const Registration = props => {
       <Grid.Column style={{ maxWidth: 450 }}>
         <Form size="large" onSubmit={handleSubmit}>
           <Segment stacked>
-            <Form.Input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={form.email}
-              onChange={handleChange}
-              required
-            />
 
-            <Form.Input
-              type="username"
-              name="username"
-              placeholder="User name"
-              value={form.username}
-              onChange={handleChange}
-              required
-            />
+          <Form.Input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={form.email}
+            onChange={handleChange}
+            required
+          />
 
-            <Form.Input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={form.password}
-              onChange={handleChange}
-              required
-            />
+          <Form.Input
+            type="username"
+            name="username"
+            placeholder="User name"
+            value={form.username}
+            onChange={handleChange}
+            required
+          />
 
-            <Form.Select
-              type="role"
-              name="role"
-              options={options}
-              placeholder="Role"
-              value={form.role.options}
-              onChange={handleSelectChange}
-              required
-            />
+          <Form.Input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={form.password}
+            onChange={handleChange}
+            required
+          />
 
-            <Button color="teal" fluid size="large">
-              Register
-            </Button>
+          <Form.Select
+            type="role"
+            name="role"
+            options={options}
+            placeholder="Role"
+            value={form.options}
+            onChange={handleSelectChange}
+            required
+          />
+
+<Button type="submit"  color='red' fluid size='large' >Register</Button>
+
           </Segment>
         </Form>
       </Grid.Column>

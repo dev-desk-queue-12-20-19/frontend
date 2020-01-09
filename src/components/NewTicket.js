@@ -6,6 +6,7 @@ import { Card, Icon, Image } from "semantic-ui-react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import tokenDecode from "../utils/tokenDecode";
 
+
 function NewTicket(props) {
   const [formValues, setFormValues] = useState({
     title: "",
@@ -88,7 +89,7 @@ function NewTicket(props) {
           </select>
         </div>
 
-        <button type="submit">Create New Request</button>
+<button type="submit">Create New Request</button>
       </form>
     </Card>
   );
