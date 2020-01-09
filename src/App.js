@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { Route } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
-
-import "./App.css";
-
 import Login from "./components/Login";
 import Registration from "./components/Registration";
 import Dashboard from "./components/Dashboard";

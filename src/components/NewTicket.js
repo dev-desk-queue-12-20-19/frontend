@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+
+import axiosWithAuth from '../utils/axiosWithAuth';
+import { Card, Icon, Image } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 
 import axiosWithAuth from '../utils/axiosWithAuth';
@@ -25,6 +28,7 @@ function NewTicket(props) {
     const valuesToPost = {
       ...formValues,
       status: "pending",
+
       student_id: tokenObj.subject.toString()
     }
     console.log("ticket values to post", valuesToPost);
@@ -45,7 +49,7 @@ function NewTicket(props) {
   }
 
   return (
-    <div>
+    <Card>
       <h3>Add your request below:</h3>
 
       <form onSubmit={handleSubmit}>
@@ -86,7 +90,7 @@ function NewTicket(props) {
 
         <button type="submit">Create New Request</button>
       </form>
-    </div>
+  </Card>
   );
 }
 

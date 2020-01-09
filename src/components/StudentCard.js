@@ -1,18 +1,20 @@
 import React from 'react';
 import { withRouter } from "react-router-dom";
+import { Card, Button } from 'semantic-ui-react';
 
 function StudentCard(props) {
 
 console.log(props)
   return (
-    <div className="TicketCard">
-      <p>Student number {props.ticket.student_id}</p>
-      <h2>Title: {props.ticket.title}</h2>
-      <h2>Description: {props.ticket.description}</h2>
-      <p>Status: {props.ticket.status} </p>
-      <button type="submit" onClick={()=> props.history.push('/new-ticket')}>Create New Request</button>
-
-    </div>
+    <Card>
+      <Card.Content>
+      <Card.Header>Student number: {props.ticket.student_id}</Card.Header>
+      <Card.Description>Title: {props.ticket.title}</Card.Description>
+      <Card.Description> Description: {props.ticket.description}</Card.Description>
+      <Card.Description>Status: {props.ticket.status} </Card.Description>
+      <Button  type="submit" onClick={()=> props.history.push('/new-ticket')}>Create New Request</Button>
+      </Card.Content>
+    </Card>
   );
 }
 
