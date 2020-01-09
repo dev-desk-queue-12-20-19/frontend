@@ -66,7 +66,7 @@ const Login = props => {
 
         <br></br>
 
-        <Button color='teal' fluid size='large'>login</Button>
+        <Button color='red' fluid size='large'>login</Button>
         </Segment>
         <Message>New User? <Link to="/register">Register </Link></Message>
 

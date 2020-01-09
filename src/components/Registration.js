@@ -15,10 +15,16 @@ const Registration = () => {
 
   const options = [
     {key: 's', text: 'Student', value: 'student'},
-    {key: 'h', text: 'helper', value: 'helper'},
+    {key: 'h', text: 'Helper', value: 'helper'},
   ]
     
-
+  const handleSelectChange = (e, data) => {
+    // console.log(data);
+    setForm({
+      ...form,
+      [data.name]: data.value
+    })
+  }
     
   
 
@@ -102,12 +108,12 @@ const Registration = () => {
             name="role"
             options={options}
             placeholder="Role"
-            value={form.role.options}
-            onChange={handleChange}
+            value={form.options}
+            onChange={handleSelectChange}
             required
           />
 
-<Button color='teal' fluid size='large' >Register</Button>
+<Button type="submit"  color='red' fluid size='large' >Register</Button>
           </Segment>
           
         

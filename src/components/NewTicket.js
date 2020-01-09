@@ -87,7 +87,7 @@ function NewTicket(props) {
           </select>
         </div>
 
-        <button type="submit">Create New Request</button>
+<button type="submit">Create New Request</button>
       </form>
   </Card>
   );
