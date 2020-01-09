@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-import { Form, Button, Grid, Segment } from 'semantic-ui-react';
+import { Form, Button, Grid, Segment, Message } from 'semantic-ui-react';
 
 import axios from 'axios'
 
@@ -44,8 +44,9 @@ const Login = props => {
     <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
     <Grid.Column style={{ maxWidth: 450 }}>
       <h1>Dev Desk</h1>
-      <form onSubmit={onSubmit}>
-        <input
+      <Form size='large' onSubmit={onSubmit}>
+      <Segment stacked>
+        <Form.Input
           type="text"
           name="username"
           placeholder="username"
@@ -55,7 +56,7 @@ const Login = props => {
 
         <br></br>
 
-        <input
+        <Form.Input
           type="password"
           name="password"
           placeholder="password"
@@ -65,9 +66,11 @@ const Login = props => {
 
         <br></br>
 
-        <button>login</button>
-        <p>New User? <Link to="/register">Register </Link></p>
-      </form>
+        <Button color='teal' fluid size='large'>login</Button>
+        </Segment>
+        <Message>New User? <Link to="/register">Register </Link></Message>
+
+      </Form>
       </Grid.Column>
   </Grid>
   );

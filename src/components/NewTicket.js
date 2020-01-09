@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 
-import axiosWithAuth from '../utils/axiosWithAuth';
 import { Card, Icon, Image } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
-
+import tokenDecode from '../utils/tokenDecode';
 import axiosWithAuth from '../utils/axiosWithAuth';
-import tokenDecode from "../utils/tokenDecode";
+
 
 function NewTicket(props) {
   const [formValues, setFormValues] = useState({
