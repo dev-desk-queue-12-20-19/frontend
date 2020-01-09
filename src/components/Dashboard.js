@@ -7,8 +7,10 @@ import TicketCard from "./TicketCard";
 
 function Dashboard(props) {
   const [ticketList, setTicketList] = useState([]);
-
-
+  
+  const userObject = JSON.parse(sessionStorage.getItem("userDetails"));
+  console.log("userObject", userObject);
+  
   useEffect(() => {
     axiosWithAuth()
       .get("/tickets")
@@ -43,9 +45,7 @@ function Dashboard(props) {
       .catch(error => {
         console.log("update error", error);
       });
-  };
-
-  
+  }; 
 
   // const assignToMe = id => {
   //   axiosWithAuth()
@@ -63,16 +63,16 @@ function Dashboard(props) {
   return (
     <div>
       {
-        props.userObject.user_type === "helper" ? ticketList.map(ticket => {
+        userObject.user_type === "helper" ? ticketList.map(ticket => {
            return <TicketCard
               deleteTicket={deleteTicket}
               markComplete={markComplete}
               ticket={ticket}
               key={ticket.id}
             />
-        }) : ticketList.filter(ticket => props.userObject.user_id === ticket.student_id).map(ticket => {
+        }) : ticketList.filter(ticket => userObject.user_id === ticket.student_id).map(ticket => {
           return (
-            <div>
+            <div key={ticket.id}>
               <StudentCard ticket={ticket} key={ticket.id} />
               <Link to="/new-ticket">Add new ticket</Link>
             </div>

@@ -1,7 +1,6 @@
 import React from 'react';
 import { withRouter } from "react-router-dom";
 
-
 function StudentCard(props) {
 
 console.log(props)
@@ -17,9 +16,9 @@ console.log(props)
   );
 }
 
-const StudentCardRouter = withRouter (StudentCard)
+const StudentCardRouter = withRouter(StudentCard);
 
-export default StudentCardRouter
+export default StudentCardRouter;
 
 
 
