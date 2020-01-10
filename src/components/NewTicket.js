@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+
 import { Card, Grid, Button, Segment, Form, TextArea } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 import tokenDecode from '../utils/tokenDecode';
 import axiosWithAuth from '../utils/axiosWithAuth';
-
 
 function NewTicket(props) {
   const [formValues, setFormValues] = useState({
@@ -44,23 +44,20 @@ function NewTicket(props) {
       status: "pending",
 
       student_id: tokenObj.subject.toString()
-    }
+    };
     console.log("ticket values to post", valuesToPost);
     console.log("ticket values to post", tokenObj);
 
-    axiosWithAuth('student')
-    .post(
-      "/tickets", valuesToPost     
-    )
-    .then(result => {
-      console.log('post Message', result);
-      props.history.push("/dashboard");
-    })
-    .catch(error => {
-      console.log('post message error', error)
-    })
-    
-  }
+    axiosWithAuth("student")
+      .post("/tickets", valuesToPost)
+      .then(result => {
+        console.log("post Message", result);
+        props.history.push("/dashboard");
+      })
+      .catch(error => {
+        console.log("post message error", error);
+      });
+  };
 
   return (
     <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
@@ -90,10 +87,8 @@ function NewTicket(props) {
             onChange={handleFormInput}
             placeholder="Describe your request in detail. Help us help you."
             required
-          />
-      
-
-        
+          />     
+   
          <h2> Categories</h2>
           <Form.Select
             type="Categories"
@@ -103,8 +98,7 @@ function NewTicket(props) {
             value={formValues.options}
             onChange={handleSelectChange}
             required
-          />
-        
+          />        
 
 <Button type="submit">Create New Request</Button>
 

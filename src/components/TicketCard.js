@@ -1,7 +1,6 @@
 import React from 'react';
 import { Card, Button, Grid, Segment } from 'semantic-ui-react';
 
-
 export default function TicketCard(props) {
 
   return (
