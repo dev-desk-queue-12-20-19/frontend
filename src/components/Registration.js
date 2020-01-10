@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Form, Button, Grid, Segment } from 'semantic-ui-react';
+import { Form, Button, Grid, Segment } from "semantic-ui-react";
 
-const Registration = () => {
+const Registration = props => {
   const [form, setForm] = useState({
     email: "",
     username: "",
@@ -12,12 +12,20 @@ const Registration = () => {
 
   const [fire, setFire] = useState(false);
 
-
   const options = [
-    {key: 's', text: 'Student', value: 'student'},
-    {key: 'h', text: 'Helper', value: 'helper'},
-  ]
-    
+    { key: "s", text: "Student", value: "student" },
+    { key: "h", text: "helper", value: "helper" }
+  ];
+
+  function handleChange(event) {
+    setForm({
+      ...form,
+      [event.target.name]: event.target.value
+    });
+
+    // console.log(event.target.value);
+  }
+
   const handleSelectChange = (e, data) => {
     // console.log(data);
     setForm({
@@ -25,23 +33,6 @@ const Registration = () => {
       [data.name]: data.value
     })
   }
-    
-  
-
- function handleChange(event) {
-
-    setForm({
-      ...form,
-      [event.target.name]: event.target.value
-    });
-    // console.log(form)
-  }
-  // function handleChange1(event) {
-  //   setForm({
-  //     //...form, username: event.target.value
-  //   });
-  //   console.log(form)
-  // }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -59,6 +50,7 @@ const Registration = () => {
           setFire(false);
 
           alert(response.statusText);
+          props.history.push("/");
           console.log(response);
         }
       })
@@ -68,14 +60,12 @@ const Registration = () => {
       });
   }
 
-
-  
-    return (
-      <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-    <Grid.Column style={{ maxWidth: 450 }}>
-      <Form size='large'  onSubmit={handleSubmit}>
-        
+  return (
+    <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
+      <Grid.Column style={{ maxWidth: 450 }}>
+        <Form size="large" onSubmit={handleSubmit}>
           <Segment stacked>
+
           <Form.Input
             type="email"
             name="email"
@@ -114,17 +104,12 @@ const Registration = () => {
           />
 
 <Button type="submit"  color='red' fluid size='large' >Register</Button>
+
           </Segment>
-          
-        
-        
-       
-
-      </Form>
+        </Form>
       </Grid.Column>
-      </Grid>
-    );
-}
-
+    </Grid>
+  );
+};
 
 export default Registration;

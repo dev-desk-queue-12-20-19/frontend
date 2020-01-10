@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, Button, Grid, Segment } from 'semantic-ui-react';
 import tokenDecode from '../utils/tokenDecode';
 
+
 export default function TicketCard(props) {
   
   const userObj = tokenDecode()
