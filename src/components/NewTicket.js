@@ -21,9 +21,9 @@ function NewTicket(props) {
   ]
 
   const handleSelectChange = (e, data) => {
-    // console.log(data);
-    setFormValues({
-      ...formValues,
+     console.log('select',data);
+     setFormValues({
+       ...formValues,
       [data.name]: data.value
     })
   }
@@ -96,8 +96,8 @@ function NewTicket(props) {
         
          <h2> Categories</h2>
           <Form.Select
-            type="Categories"
-            name="Categories"
+            type="categories"
+            name="categories"
             options={options}
             placeholder="Role"
             value={formValues.options}

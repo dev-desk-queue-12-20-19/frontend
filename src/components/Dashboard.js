@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import StudentCard from './StudentCard';
 import TicketCard from "./TicketCard";
+import tokenDecode from "../utils/tokenDecode";
 
 
 
@@ -47,19 +48,24 @@ function Dashboard(props) {
       });
   }; 
 
-  // const assignToMe = id => {
-  //   axiosWithAuth()
-  //     .put(`/tickets/${id}`, { helper_id: `${id}` })
-  //     .then(response => {
-  //       console.log(response);
+  const userObj = tokenDecode()
+  console.log('userOb',userObj)
 
-  //     })
-  //     .catch(error => {
-  //       console.log("assignment error", error);
-  //     });
-  // };
+   const assignToMe = id => {
 
-  // console.log("User object from ...", props.userObject);
+     axiosWithAuth('helper')
+       .put(`/tickets/${id}`, { helper_id: id })
+       .then(response => {
+
+         console.log(response);
+
+       })
+       .catch(error => {
+         console.log("assignment error", error);
+       });
+   };
+
+   console.log("User object from ...", props.userObject);
   return (
     <div>
       {
@@ -67,6 +73,7 @@ function Dashboard(props) {
            return <TicketCard
               deleteTicket={deleteTicket}
               markComplete={markComplete}
+              assignToMe={assignToMe}
               ticket={ticket}
               key={ticket.id}
             />
