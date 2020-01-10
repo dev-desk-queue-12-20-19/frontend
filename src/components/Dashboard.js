@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
-
 import axiosWithAuth from "../utils/axiosWithAuth";
 import StudentCard from './StudentCard';
 import TicketCard from "./TicketCard";
-import { Card, Grid, Button, Segment } from 'semantic-ui-react';
 
 
 

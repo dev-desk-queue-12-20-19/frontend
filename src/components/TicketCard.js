@@ -1,17 +1,31 @@
 import React from 'react';
+import { Card, Button, Grid, Segment } from 'semantic-ui-react';
 
 export default function TicketCard(props) {
 
   return (
-    <div className="TicketCard">
-      <p>Id number {props.ticket.id}</p>
-      <h2>Title: {props.ticket.title}</h2>
-      <h2>Description: {props.ticket.description}</h2>
-      <p>Status: {props.ticket.status} </p>
-      <button onClick={() => props.deleteTicket(props.ticket.id)}>Delete </button>
-      <button onClick={() => props.markComplete(props.ticket.id)}>Mark Complete</button>
+    <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+    <Grid.Column style={{ maxWidth: 450 }}>
+    <Card.Group>
+      <Card>
+        <Card.Content>
+          <Segment stacked>
+      <Card.Header>Id number {props.ticket.id}</Card.Header>
+      <Card.Description>Title: {props.ticket.title}</Card.Description>
+      <Card.Description>Description: {props.ticket.description}</Card.Description>
+      <Card.Description>Status: {props.ticket.status} </Card.Description>
+      <Button basic color='red' onClick={() => props.deleteTicket(props.ticket.id)}>Delete </Button>
+      <Button basic color='green' onClick={() => props.markComplete(props.ticket.id)}>Mark Complete</Button>
 
-      <button>Assign to me</button>
-    </div>
+      <Button>Assign to me</Button>
+      </Segment>
+      </Card.Content>
+      </Card>
+    </Card.Group>
+    </Grid.Column>
+
+</Grid>
+    
+    
   );
 }
